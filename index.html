@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Color Palette Generator</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.palette{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-bottom:30px;
+}
+
+.colorBox{
+width:120px;
+height:150px;
+border-radius:8px;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+cursor:pointer;
+font-weight:bold;
+padding-bottom:10px;
+}
+
+button{
+padding:10px 20px;
+background:#22c55e;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎨 Color Palette Generator</h1>
+
+<div class="palette" id="palette"></div>
+
+<button onclick="generatePalette()">Generate Palette</button>
+
+<script>
+
+function randomColor(){
+
+let letters = "0123456789ABCDEF"
+let color = "#"
+
+for(let i=0;i<6;i++){
+color += letters[Math.floor(Math.random()*16)]
+}
+
+return color
+}
+
+function generatePalette(){
+
+let palette = document.getElementById("palette")
+palette.innerHTML = ""
+
+for(let i=0;i<5;i++){
+
+let color = randomColor()
+
+let box = document.createElement("div")
+box.className = "colorBox"
+box.style.background = color
+box.innerText = color
+
+box.onclick = function(){
+
+navigator.clipboard.writeText(color)
+alert(color + " copied!")
+
+}
+
+palette.appendChild(box)
+
+}
+
+}
+
+generatePalette()
+
+</script>
+
+</body>
+</html>
